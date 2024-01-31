@@ -1,5 +1,9 @@
-package com.example.praise.repository;
+package com.example.likeBoard.repository;
 
-public interface BoardRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.likeBoard.model.entity.Board;
+
+public interface BoardRepository extends JpaRepository<Board, Integer>{
 
 }
