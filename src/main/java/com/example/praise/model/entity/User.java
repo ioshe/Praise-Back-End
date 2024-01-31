@@ -1,18 +1,23 @@
-package com.example.likeBoard.model.entity;
+package com.example.praise.model.entity;
 
 import java.util.List;
 
-import com.example.likeBoard.model.entity.User;
+import com.example.praise.model.dto.UserDto;
+import com.example.praise.model.entity.User;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude="board")
 public class User {
 	@Id
 	private int id;	// autoIncreasement
@@ -27,15 +32,15 @@ public class User {
 	List<Board> boards;
 	
 	// DTO -> Entity
-	public User toDto() {
-		User user = new User();
-		user.setId(this.getId());
-		user.setUserName(this.getUserName());
-		user.setPassWord(this.getPassWord());
-		user.setRealName(this.getRealName());
-		user.setClassName(this.getClassName());
-		user.setNickName(this.getNickName());
-		user.setUserPoint(this.getUserPoint());
-		return user;
+	public UserDto toDto() {
+		UserDto dto = new UserDto();
+		dto.setId(this.getId());
+		dto.setUserName(this.getUserName());
+		dto.setPassWord(this.getPassWord());
+		dto.setRealName(this.getRealName());
+		dto.setClassName(this.getClassName());
+		dto.setNickName(this.getNickName());
+		dto.setUserPoint(this.getUserPoint());
+		return dto;
 	}
 }

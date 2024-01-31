@@ -1,9 +1,9 @@
-package com.example.likeBoard.model.dto;
+package com.example.praise.model.dto;
 
 import java.util.List;
 
-import com.example.likeBoard.model.entity.Board;
-import com.example.likeBoard.model.entity.User;
+import com.example.praise.model.entity.Board;
+import com.example.praise.model.entity.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

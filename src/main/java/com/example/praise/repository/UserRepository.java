@@ -1,8 +1,8 @@
-package com.example.likeBoard.repository;
+package com.example.praise.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.likeBoard.model.entity.User;
+import com.example.praise.model.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 

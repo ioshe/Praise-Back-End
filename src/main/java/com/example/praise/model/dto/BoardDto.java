@@ -1,6 +1,7 @@
-package com.example.likeBoard.model.dto;
+package com.example.praise.model.dto;
 
-import com.example.likeBoard.model.entity.Board;
+
+import com.example.praise.model.entity.Board;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,16 +14,16 @@ public class BoardDto {
 	private int no;
 	private String title;
 	private String content;
-	private int send_Id;
-	private int receive_Id;
+	private int sendId;
+	private int receiveId;
 	
 	public Board toEntity() {
 		Board board = new Board();
 		board.setNo(this.getNo());
 		board.setTitle(this.getTitle());
 		board.setContent(this.getContent());
-		board.setSend_Id(this.getSend_Id());
-		board.setReceive_Id(this.getReceive_Id());
+		board.setSendId(this.getSendId());
+		board.setReceiveId(this.getReceiveId());
 		return board;
 	}
 }

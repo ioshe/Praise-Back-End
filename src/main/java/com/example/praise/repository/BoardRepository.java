@@ -1,8 +1,8 @@
-package com.example.likeBoard.repository;
+package com.example.praise.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.likeBoard.model.entity.Board;
+import com.example.praise.model.entity.Board;
 
 public interface BoardRepository extends JpaRepository<Board, Integer>{
 
