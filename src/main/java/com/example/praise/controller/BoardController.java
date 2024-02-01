@@ -5,10 +5,8 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,40 +52,30 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	// 글 삭제하는 기능
-	@DeleteMapping("/detail")
-	public String deleteBoard(@RequestParam int boardId){
-		// 글 삭제 머서드
-		return "redirect:/board/list";
-	}
-	
-	// 좋아요 기능 
-	@PatchMapping("/detail")
-	public void likes(@RequestParam int likes) {
-		//자바스크립트? 아니라면 int return
-	}
-	
-	//목록으로 돌아가는 기능
-	@GetMapping("/back")
-	public String backList() {
-		//현재 작성중인것을 저장할거냐를 물어볼까?
-		return "redirect:/board";
-	}
-
-
-	
 	// 단일 글 조회하기
 	@GetMapping("/detail")
-	public String detail(@RequestParam int board_id, Model model) {
+	public String detail(@RequestParam int boardId, Model model) {
 		try {
-			//Board board = service.detailBoard(board_id);
-			//model.addAttribute("board",board);
+			Board board = bService.detailBoard(boardId);
+			bService.updateViews(boardId);
+			model.addAttribute("board",board);
 			return "board/detail";
 		}catch(RuntimeException e) {
 			return "board/list";
 		}
 	}
 	
-
+	// 삭제하는 메서드  /delete?boardId=3
+	@GetMapping("/delete")
+	public String delete(@RequestParam int boardId) {
+		bService.deleteBoard(boardId);
+		return "redirect:/board/list";  // /WEB-INF/view/list.jsp
+	}
 	
+	// 좋아요 기능 
+	@GetMapping("/like")
+	public String likes(@RequestParam int boardId) {
+		System.out.println(111);
+		return "board/detail?boardId=3";
+	}
 }

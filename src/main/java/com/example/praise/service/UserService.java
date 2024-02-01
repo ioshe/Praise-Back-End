@@ -31,6 +31,17 @@ public class UserService {
 		this.brepo = brepo;
 	}
 	
+	public Map<Integer, String> getAllRealNames() {
+        List<User> users = urepo.findAll();
+        Map<Integer, String> realnames = new HashMap<>();
+        
+        for (User user : users) {
+            realnames.put(user.getId(), user.getRealname());
+        }
+
+        return realnames;
+	}
+	
 	// 1. auth
 	// 1) 회원가입
 	@Transactional	// 무결성 유지
@@ -61,20 +72,36 @@ public class UserService {
 		return urepo.save(user);
 	}
 	
-	public Map<Integer, String> getAllRealNames() {
-        List<User> users = urepo.findAll();
-        Map<Integer, String> realnames = new HashMap<>();
-        
-        for (User user : users) {
-            realnames.put(user.getId(), user.getRealname());
-        }
 
-        return realnames;
+	// 2) 회원탈퇴
+	public void signout(UserDto dto) {
+		User user = dto.toEntity();
+		// dto 통해서 받아온 삭제하고자 하는 id가 db에 있으면 삭제
+		if (urepo.findByUsername(user.getUsername()) != null) {
+			urepo.deleteByUsername(user.getUsername());
+		} else {
+			throw new RuntimeException("존재하지 않는 회원입니다.");
+		}
 	}
 	
+
 	public Page<Board> getUserBoardList(int userId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         User sender = urepo.findById(userId).orElseThrow(() -> new RuntimeException("해당 유저가 없습니다"));
         return brepo.findBySender(sender, pageable);
     }
+
+	// 3) 로그인
+	public UserDto login(UserDto dto) {
+		Optional<User> result = urepo.findByUsername(dto.getUsername());
+		if (result.isPresent()) {
+			User selected = result.get();
+			
+			if(selected.getPassword().equals(dto.getPassword())) {
+				return selected.toDto();
+			}
+		}
+		throw new RuntimeException("로그인에 실패하였습니다.");
+	}
+
 }

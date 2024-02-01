@@ -22,7 +22,7 @@
                 <br>
                 <input type="text" name="classname" placeholder="우리FISA 반(클래스)">
                 <br>                
-                <input type="password" name="password" placeholder="사용자 비밀번호">
+                <input type="password" name="password" placeholder="사용자 비번">
                 <br>
                 <input type="submit" value="회원 가입">
                 <!-- 이 값들이 서버로 날아오면 url이 유저의 조인이고 포스트인곳으로 날아간다 -->
