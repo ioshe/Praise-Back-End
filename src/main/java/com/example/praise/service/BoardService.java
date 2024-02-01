@@ -73,4 +73,10 @@ public class BoardService {
 		brepo.deleteById(boardId);
 	}
 	
+	public void updateViews(int boardId) {
+		Board board = brepo.getReferenceById(boardId);
+		int currentViews = board.getViews() + 1;
+		board.setViews(currentViews);
+		brepo.saveAndFlush(board);
+	}
 }
