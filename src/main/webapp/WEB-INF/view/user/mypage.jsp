@@ -90,7 +90,7 @@
 			        <a href="?page=${boardPage.number - 1}">&laquo; 이전</a>
 			    </c:if>
 			    <%-- 페이지 번호 링크 --%>
-			    <c:forEach begin="0" end="${boardPage.totalPages - 1}" var="pageNum">
+			    <c:forEach begin="0" end="${boardPage.totalPages}" var="pageNum">
 			        <c:if test="${boardPage.number == pageNum}">
 			            <span><strong>${pageNum + 1}</strong></span>
 			        </c:if>
