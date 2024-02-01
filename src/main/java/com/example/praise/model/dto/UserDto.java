@@ -13,25 +13,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-	private int id;	// autoIncreasement
-	private String userName; // loginID
-	private String passWord;
-	private String realName;
-	String className;
-	String nickName;
-	int userPoint;
-	private List<Board> boards;
+	private int id;
+	private String username;
+	private String password;
+	private String realname;
+	private String classname;
+	private String nickname;
+	private int userPoint;
 	
-	public User toDto() {
+	private List<Board> sentBoards;
+	private List<Board> receivedBoards;
+	
+	public User toEntity() {
 		User user = new User();
 		user.setId(this.getId());
-		user.setUserName(this.getUserName());
-		user.setPassWord(this.getPassWord());
-		user.setRealName(this.getRealName());
-		user.setClassName(this.getClassName());
-		user.setNickName(this.getNickName());
+		user.setPassword(this.getPassword());
+		user.setRealname(this.getRealname());
+		user.setClassname(this.getClassname());
+		user.setNickname(this.getNickname());
 		user.setUserPoint(this.getUserPoint());
 		return user;
 	}
-	
 }

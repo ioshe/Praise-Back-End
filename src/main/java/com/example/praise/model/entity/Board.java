@@ -23,13 +23,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = {"recevieUser", "sendUser"}) // 순환참조 방지
+@ToString(exclude = {"sender", "receiver"}) // 순환참조 방지
 public class Board {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int boardId; // 글 번호
 	private String title; // 글 제목
 	private String content; // 글 내용
+
 
 	@ManyToOne
     @JoinColumn(name = "sendId") 
@@ -41,11 +42,11 @@ public class Board {
 	
 	public BoardDto toDto() {
 		BoardDto boardDto = new BoardDto();
-		boardDto.setNo(this.getBoardId());
+		boardDto.setBoardId(this.getBoardId());
 		boardDto.setTitle(this.getTitle());
 		boardDto.setContent(this.getContent());
-		boardDto.setReceiveId(this.getSender().getUserId());
-		boardDto.setSendId(this.getReceiver().getUserId());		
+		boardDto.setSenderId(this.getSender().getId());
+		boardDto.setReceiverId(this.getReceiver().getId());
 		return boardDto;
 	}
 }
