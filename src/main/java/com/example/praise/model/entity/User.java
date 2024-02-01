@@ -3,7 +3,6 @@ package com.example.praise.model.entity;
 import java.util.List;
 
 import com.example.praise.model.dto.UserDto;
-import com.example.praise.model.entity.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,17 +20,18 @@ import lombok.ToString;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude="board")
+@ToString(exclude = {"sentBoards", "receivedBoards"}) // 순환참조 방지
 @Builder
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int userId;	// autoIncreasement
+	private int id;	// autoIncreasement
+	
 	private String username; // loginID
 	private String password;
-	private String realName;
-	String className;
-	String nickName;
+	private String realname;
+	private String classname;
+	private String nickname;
 	int userPoint;
 	 
     // 이 사용자가 보낸 모든 칭찬 게시물
@@ -45,12 +45,12 @@ public class User {
 	// Entity -> Dto
 	public UserDto toDto() {
 		UserDto dto = new UserDto();
-		dto.setId(this.getUserId());
-		dto.setUserName(this.getUsername());
-		dto.setPassWord(this.getPassword());
-		dto.setRealName(this.getRealName());
-		dto.setClassName(this.getClassName());
-		dto.setNickName(this.getNickName());
+		dto.setId(this.getId());
+		dto.setUsername(this.getUsername());
+		dto.setPassword(this.getPassword());
+		dto.setRealname(this.getRealname());
+		dto.setClassname(this.getClassname());
+		dto.setNickname(this.getNickname());
 		dto.setUserPoint(this.getUserPoint());
 		return dto;
 	}
