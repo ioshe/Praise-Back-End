@@ -44,19 +44,29 @@ public class AuthController {
 	}
 	
 	// 2) 회원탈퇴
+	// 탈퇴진행
 	@PostMapping("/signout")
-	public String signoutUser(@ModelAttribute UserDto dto, Model model) {
+	public String signoutUser(HttpSession session, Model model) {
 		try{
-			service.signout(dto);
-			model.addAttribute("message", "회원탈퇴가 완료되었습니다.");
-			return "redirect:/";
+			service.signout(session);
+			session.invalidate();
+			model.addAttribute("signoutmsg", "회원탈퇴가 완료되었습니다.");
 		} catch (RuntimeException e) {
-			model.addAttribute("msg", "회원탈퇴에 실패했습니다.");
-			return "user/mypage";
+			model.addAttribute("signoutmsg", "회원탈퇴에 실패했습니다.");
 		}
-		
+		return "redirect:/";
 	}
-	
+//	@PostMapping("/signout")
+//	public String signoutUser(@ModelAttribute UserDto dto, Model model) {
+//		try{
+//			service.signout(dto);
+//			model.addAttribute("signoutmsg", "회원탈퇴가 완료되었습니다.");
+//		} catch (RuntimeException e) {
+//			model.addAttribute("signoutmsg", "회원탈퇴에 실패했습니다.");
+//		}
+//		return "redirect:/";
+//	}
+//	
 	// 3) 로그인
 	@PostMapping("/login")
 	public String login(@ModelAttribute UserDto dto, Model model, HttpSession session) {

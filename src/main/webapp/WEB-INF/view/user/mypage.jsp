@@ -63,12 +63,16 @@
                 <% } %>
             </div>
            	<div>
+           		<c:if test = "${empty loginUser }">
+           			${signoutmsg }
+           		</c:if>
 		       	<form action="/auth/signout" method="post">
 		       	<input type="text" name="username" placeholder="아이디">
 		       	<br>
 		       	<input type="password" name="password" placeholder="비밀번호">
 		       	<br>
 		       	<input type="submit" value = "회원탈퇴">
+		       	
 		       	</form>
 		    </div>
         </div>

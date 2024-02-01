@@ -18,6 +18,7 @@ import com.example.praise.model.form.PasswordForm;
 import com.example.praise.repository.BoardRepository;
 import com.example.praise.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -42,22 +43,11 @@ public class UserService {
         return realnames;
 	}
 	
-	// 1. auth
-	// 1) 회원가입
-	@Transactional	// 무결성 유지
-	public User register(UserDto dto) {
-		User user = dto.toEntity();
-		if (urepo.findByUsername(user.getUsername()).isPresent()) {
-			throw new RuntimeException("이미 존재하는 사용자 입니다.");
-		} else {
-			return urepo.saveAndFlush(user);
-		}
-	}
-
 	public Optional<User> getUserById(int id) {
 		return urepo.findById(id);
 	}
-
+	
+	// mypage 비밀번호 변경
 	public Optional<User> getPasswordById(int id, String curPassword) {
 		System.out.println(id + "/ " + curPassword);
 		Optional<User> user = urepo.findByIdAndPassword(id, curPassword);
@@ -72,17 +62,41 @@ public class UserService {
 		return urepo.save(user);
 	}
 	
-
-	// 2) 회원탈퇴
-	public void signout(UserDto dto) {
+	
+	// 1. auth
+	// 1) 회원가입
+	@Transactional	// 무결성 유지
+	public User register(UserDto dto) {
 		User user = dto.toEntity();
-		// dto 통해서 받아온 삭제하고자 하는 id가 db에 있으면 삭제
-		if (urepo.findByUsername(user.getUsername()) != null) {
-			urepo.deleteByUsername(user.getUsername());
+		if (urepo.findByUsername(user.getUsername()).isPresent()) {
+			throw new RuntimeException("이미 존재하는 사용자 입니다.");
 		} else {
-			throw new RuntimeException("존재하지 않는 회원입니다.");
+			return urepo.saveAndFlush(user);
 		}
 	}
+
+	// 2) 회원탈퇴
+	public void signout(HttpSession session) {
+		UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+		urepo.deleteById(loginUser.getId());
+	}
+	
+//	public void signout(UserDto dto) {
+//		User user = dto.toEntity();
+//		// dto 통해서 받아온 삭제하고자 하는 id가 db에 있으면 삭제
+//		if (urepo.findByUsername(user.getUsername()).isPresent()) {	
+////			urepo.deleteByUsername(user.getUsername());
+//			try {
+//				UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+//			    urepo.deleteByUsername(user.getUsername());
+//			} catch (Exception e) {
+//			    e.printStackTrace();
+//			    throw new RuntimeException("회원 탈퇴 중 오류 발생: " + e.getMessage());
+//			}
+//		} else {
+//			throw new RuntimeException("존재하지 않는 회원입니다.");
+//		}
+//	}
 	
 
 	public Page<Board> getUserBoardList(int userId, int page, int size) {
