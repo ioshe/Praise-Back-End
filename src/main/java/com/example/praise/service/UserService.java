@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.praise.model.dto.UserDto;
 import com.example.praise.model.entity.User;
+import com.example.praise.model.form.PasswordForm;
 import com.example.praise.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -35,6 +36,22 @@ public class UserService {
 
 	public Optional<User> getUserById(int id) {
 		return urepo.findById(id);
+	}
+
+	public Optional<User> getPasswordById(int id, String curPassword) {
+		System.out.println(id + "/ " + curPassword);
+		Optional<User> user = urepo.findByIdAndPassword(id, curPassword);
+		if(user.isPresent()) {
+			System.out.println("비밀번호 맞았어요 굿굿");
+			return user;
+		} else {
+			System.out.println("비밀번호가 틀렸습니다.!!!!!!");
+			throw new RuntimeException("비밀번호가 틀렸습니다.");
+		}
+	}
+	
+	public User saveUser(User user) {
+		return urepo.save(user);
 	}
 	
 	public Map<Integer, String> getAllRealNames() {

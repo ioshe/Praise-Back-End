@@ -19,23 +19,25 @@
 	</div>
 	<div>
 	    <h3>비밀번호 변경</h3>
-	    <form action="/changePassword" method="POST">
+	    <form action="/user/password" method="POST">
 	        <div>
 	            <label for="currentPassword">현재 비밀번호:</label>
-	            <input type="password" id="currentPassword" name="currentPassword" required>
+	            <input type="password" id="currentPassword" name="curPassword" required>
 	        </div>
 	        <div>
 	            <label for="newPassword">새 비밀번호:</label>
 	            <input type="password" id="newPassword" name="newPassword" required>
 	        </div>
 	        <div>
-	            <label for="confirmNewPassword">새 비밀번호 확인:</label>
-	            <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
-	        </div>
-	        <div>
 	            <button type="submit">비밀번호 변경</button>
 	        </div>
 	    </form>
+	    <% if (request.getAttribute("errorMessage") != null) { %>
+		    <p style="color:red;"><%= request.getAttribute("errorMessage") %></p>
+		<% } %>
+	    <% if (request.getAttribute("successMessage") != null) { %>
+		    <p style="color:blue;"><%= request.getAttribute("successMessage") %></p>
+		<% } %>
 	</div>
 </body>
 </html>
