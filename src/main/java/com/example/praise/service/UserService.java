@@ -5,11 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.example.praise.model.dto.UserDto;
+import com.example.praise.model.entity.Board;
 import com.example.praise.model.entity.User;
 import com.example.praise.model.form.PasswordForm;
+import com.example.praise.repository.BoardRepository;
 import com.example.praise.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -17,9 +23,12 @@ import jakarta.transaction.Transactional;
 @Service
 public class UserService {
 	private UserRepository urepo;
+	private BoardRepository brepo;
+	
 	// urepo에 데이터 넣기 위한 생성자 - 전달받은 데이터를 데리고 갈 준비
-	public UserService(UserRepository urepo) {
+	public UserService(UserRepository urepo, BoardRepository brepo) {
 		this.urepo = urepo;
+		this.brepo = brepo;
 	}
 	
 	public Map<Integer, String> getAllRealNames() {
@@ -53,10 +62,8 @@ public class UserService {
 		System.out.println(id + "/ " + curPassword);
 		Optional<User> user = urepo.findByIdAndPassword(id, curPassword);
 		if(user.isPresent()) {
-			System.out.println("비밀번호 맞았어요 굿굿");
 			return user;
 		} else {
-			System.out.println("비밀번호가 틀렸습니다!!!!!!");
 			throw new RuntimeException("비밀번호가 틀렸습니다.");
 		}
 	}
@@ -77,6 +84,13 @@ public class UserService {
 		}
 	}
 	
+
+	public Page<Board> getUserBoardList(int userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        User sender = urepo.findById(userId).orElseThrow(() -> new RuntimeException("해당 유저가 없습니다"));
+        return brepo.findBySender(sender, pageable);
+    }
+
 	// 3) 로그인
 	public UserDto login(UserDto dto) {
 		Optional<User> result = urepo.findByUsername(dto.getUsername());
@@ -91,4 +105,3 @@ public class UserService {
 	}
 
 }
-

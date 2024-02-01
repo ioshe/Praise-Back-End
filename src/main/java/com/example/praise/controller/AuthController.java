@@ -70,7 +70,7 @@ public class AuthController {
 		}
 		
 	}
-	
+
 	// 4) 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -78,6 +78,3 @@ public class AuthController {
 		return "redirect:/";
 	}
 }
-
-
-

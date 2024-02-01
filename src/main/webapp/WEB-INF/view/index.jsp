@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        window.location.href = "/board/list";
+    </script>
 </head>
 <body>
-<!-- 인클루드로 가져올거야 -->
-        <%@include file = "/WEB-INF/view/include/header.jsp" %>
-        칭찬 게시판에 오신 걸 환영합니다.
-        
-        <!-- 아래에 게시글 정렬 -->
+    <p>If you are not redirected, <a href="/board/list">click here</a>.</p>
 </body>
 </html>
