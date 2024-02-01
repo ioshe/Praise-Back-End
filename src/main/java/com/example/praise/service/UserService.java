@@ -45,4 +45,17 @@ public class UserService {
 			throw new RuntimeException("존재하지 않는 회원입니다.");
 		}
 	}
+	
+	// 3) 로그인
+	public UserDto login(UserDto dto) {
+		Optional<User> result = urepo.findByUsername(dto.getUsername());
+		if (result.isPresent()) {
+			User selected = result.get();
+			
+			if(selected.getPassword().equals(dto.getPassword())) {
+				return selected.toDto();
+			}
+		}
+		throw new RuntimeException("로그인에 실패하였습니다.");
+	}
 }

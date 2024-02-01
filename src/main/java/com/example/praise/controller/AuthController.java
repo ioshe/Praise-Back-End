@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.praise.model.dto.UserDto;
 import com.example.praise.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/auth")
@@ -50,6 +52,20 @@ public class AuthController {
 		} catch (RuntimeException e) {
 			model.addAttribute("msg", "회원탈퇴에 실패했습니다.");
 //			return "user/mypage";
+		}
+		
+	}
+	
+	// 3) 로그인
+	@PostMapping("/login")
+	public String login(@ModelAttribute UserDto dto, Model model, HttpSession session) {
+		try {
+			UserDto result = service.login(dto);
+			session.setAttribute("loginUser", result);
+			return "redirect:/";
+		} catch (RuntimeException e) {
+			model.addAttribute("loginmsg", e.getMessage());
+			return "index";
 		}
 		
 	}
