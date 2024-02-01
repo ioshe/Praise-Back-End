@@ -30,7 +30,12 @@ public class BoardUserRelationTest {
         userRepository.save(user0);
 
         // Board 객체 생성 및 저장
-        Board board1 = new Board(10, "이민수를 칭찬합니다.", "이민수는 타의 모범이 되었습니다.", user, user0);
+        Board board1 = Board.builder().boardId(10)
+        		.title("이민수는 타의 모범이 되었습니다.")
+        		.content("이민수를 칭찬합니다.")
+        		.sender(user)
+        		.receiver(user0)
+        		.build();
         boardRepository.save(board1);
 
         // Board 객체가 null이 아닌지 확인

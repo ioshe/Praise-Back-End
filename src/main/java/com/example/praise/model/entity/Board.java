@@ -1,7 +1,6 @@
 package com.example.praise.model.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import com.example.praise.model.dto.BoardDto;
 
@@ -10,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,7 +28,10 @@ public class Board {
 	private int boardId; // 글 번호
 	private String title; // 글 제목
 	private String content; // 글 내용
-
+	private int views;
+	private int likes;
+	private boolean anonymous;
+	private Date registDate;
 
 	@ManyToOne
     @JoinColumn(name = "sendId") 
@@ -45,6 +46,11 @@ public class Board {
 		boardDto.setBoardId(this.getBoardId());
 		boardDto.setTitle(this.getTitle());
 		boardDto.setContent(this.getContent());
+		
+		boardDto.setViews(this.getViews());
+		boardDto.setLikes(this.getLikes());
+		boardDto.setAnonymous(this.isAnonymous());
+		
 		boardDto.setSenderId(this.getSender().getId());
 		boardDto.setReceiverId(this.getReceiver().getId());
 		return boardDto;
