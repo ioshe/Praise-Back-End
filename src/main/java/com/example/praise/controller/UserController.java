@@ -39,14 +39,12 @@ public class UserController {
 	@GetMapping("/mypage")
 	public String getUserByIdAndBoardList(@RequestParam(defaultValue = "0") Integer page, HttpSession session, Model model) {
 		try {
-			int userId = 1;
-			// 1. 사용자 정보 조회
-//			Optional<User> userInfo = userService.getUserById(Integer.parseInt(session.getId());
-			Optional<User> userInfo = userService.getUserById(userId);
+			UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+			Optional<User> userInfo = userService.getUserById((int) loginUser.getId());
 			model.addAttribute("userInfo", userInfo.get());
 			
 			// 2. 사용자가 작성한 글 목록 조회
-			Page<Board> boardPage = userService.getUserBoardList(userId, page, 10);
+			Page<Board> boardPage = userService.getUserBoardList((int) loginUser.getId(), page, 10);
 		    model.addAttribute("boardPage", boardPage);
 			
 			return "user/mypage";
@@ -59,8 +57,8 @@ public class UserController {
 	public String updatePassword(HttpSession session, PasswordForm pwForm, Model model) {	
 		try {
 			// 1. 현재 비밀번호 일치 여부 확인(Get)
-//			userService.getPasswordById(Integer.parseInt(session.getId()), pwForm.getCurPassword());
-			User user = userService.getPasswordById(1, pwForm.getCurPassword()).get();
+			UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+			User user = userService.getPasswordById(loginUser.getId(), pwForm.getCurPassword()).get();
 			
 			// 2. 비밀번호 변경
 			user.setPassword(pwForm.getNewPassword());

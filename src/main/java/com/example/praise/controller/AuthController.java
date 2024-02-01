@@ -45,13 +45,14 @@ public class AuthController {
 	
 	// 2) 회원탈퇴
 	@PostMapping("/signout")
-	public void signoutUser(@ModelAttribute UserDto dto, Model model) {
+	public String signoutUser(@ModelAttribute UserDto dto, Model model) {
 		try{
 			service.signout(dto);
 			model.addAttribute("message", "회원탈퇴가 완료되었습니다.");
+			return "redirect:/";
 		} catch (RuntimeException e) {
 			model.addAttribute("msg", "회원탈퇴에 실패했습니다.");
-//			return "user/mypage";
+			return "user/mypage";
 		}
 		
 	}
@@ -68,5 +69,12 @@ public class AuthController {
 			return "index";
 		}
 		
+	}
+
+	// 4) 로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 }
