@@ -1,6 +1,6 @@
 package com.example.praise.model.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import com.example.praise.model.dto.BoardDto;
 
@@ -31,7 +31,9 @@ public class Board {
 	private int views;
 	private int likes;
 	private boolean anonymous;
-	private Date registDate;
+	
+	
+	private Timestamp registDate;
 
 	@ManyToOne
     @JoinColumn(name = "sendId") 
@@ -50,6 +52,8 @@ public class Board {
 		boardDto.setViews(this.getViews());
 		boardDto.setLikes(this.getLikes());
 		boardDto.setAnonymous(this.isAnonymous());
+		
+		boardDto.setRegistDate(this.getRegistDate());
 		
 		boardDto.setSenderId(this.getSender().getId());
 		boardDto.setReceiverId(this.getReceiver().getId());

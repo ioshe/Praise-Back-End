@@ -5,7 +5,6 @@ import java.util.List;
 import com.example.praise.model.entity.Board;
 import com.example.praise.model.entity.User;
 
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

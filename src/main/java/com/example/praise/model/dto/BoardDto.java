@@ -1,5 +1,7 @@
 package com.example.praise.model.dto;
 
+import java.sql.Timestamp;
+
 import com.example.praise.model.entity.Board;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ public class BoardDto {
 	private int views;
 	private int likes;
 	private boolean anonymous;
+	private Timestamp registDate;
 	
 	private int senderId; // 칭찬하는 유저 ID
 	private int receiverId; // 칭찬받는 유저 ID
@@ -26,11 +29,8 @@ public class BoardDto {
 		board.setBoardId(this.getBoardId());
 		board.setTitle(this.getTitle());
 		board.setContent(this.getContent());
-		
-//		board.setViews(this.getViews());
-//		board.setLikes(this.getLikes());
 		board.setAnonymous(this.isAnonymous());
-		
+		board.setRegistDate(this.getRegistDate());
 		return board;
 	}
 }
