@@ -17,6 +17,7 @@ import com.example.praise.model.entity.Board;
 import com.example.praise.model.entity.User;
 import com.example.praise.repository.BoardRepository;
 import com.example.praise.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class BoardService {
@@ -78,5 +79,16 @@ public class BoardService {
 		int currentViews = board.getViews() + 1;
 		board.setViews(currentViews);
 		brepo.saveAndFlush(board);
+	}
+	
+	public int toggleLike(int boardId,HttpSession session) {
+		if (session.getAttribute(String.valueOf(boardId)+"Like") == null){
+			session.setAttribute(String.valueOf(boardId)+"Like", 1);
+			return 1;
+		}
+		else {
+			session.setAttribute(String.valueOf(boardId)+"Like",0);
+			return 0;
+		}
 	}
 }

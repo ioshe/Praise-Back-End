@@ -3,6 +3,7 @@ package com.example.praise.controller;
 import java.util.Map;
 
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,8 @@ import com.example.praise.model.dto.BoardDto;
 import com.example.praise.model.entity.Board;
 import com.example.praise.service.BoardService;
 import com.example.praise.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/board")
@@ -74,8 +77,14 @@ public class BoardController {
 	
 	// 좋아요 기능 
 	@GetMapping("/like")
-	public String likes(@RequestParam int boardId) {
-		System.out.println(111);
-		return "board/detail?boardId=3";
+	public ResponseEntity<String> toggleLike(@RequestParam int boardId,HttpSession session) {
+	    // 좋아요 상태를 토글하고, 현재 좋아요 수를 반환하는 로직
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		System.out.println(boardId);
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+String.valueOf(boardId));
+		int currentLikeCount = bService.toggleLike(boardId,session);
+	    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+String.valueOf(currentLikeCount));
+	    
+	    return ResponseEntity.ok("{\"likeCount\":" + currentLikeCount + "}");
 	}
 }
