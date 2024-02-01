@@ -54,22 +54,21 @@ public class UserController {
 	}
 	
 	@PostMapping("/password")
-	public String updatePassword(HttpSession session, PasswordForm pwForm, Model model) {	
+	public String updatePassword(HttpSession session, PasswordForm pwForm, Model model, RedirectAttributes attribredirectAttributes) {	
 		try {
 			// 1. 현재 비밀번호 일치 여부 확인(Get)
 			UserDto loginUser = (UserDto) session.getAttribute("loginUser");
-			model.addAttribute("userInfo", loginUser);
+//			model.addAttribute("userInfo", loginUser);
 			User user = userService.getPasswordById(loginUser.getId(), pwForm.getCurPassword()).get();
 			
 			// 2. 비밀번호 변경
 			user.setPassword(pwForm.getNewPassword());
 			userService.saveUser(user);
 			
-			model.addAttribute("successMessage", "비밀번호를 변경했습니다.");
-			return "user/mypage";
+			attribredirectAttributes.addFlashAttribute("successMessage", "비밀번호를 변경했습니다.");
 		} catch(RuntimeException e) {
-			model.addAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
-			return "user/mypage";
+			attribredirectAttributes.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
 		}
+		return "redirect:/user/mypage";
 	}
 }
