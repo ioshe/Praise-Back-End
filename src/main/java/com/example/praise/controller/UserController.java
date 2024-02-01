@@ -1,8 +1,10 @@
 package com.example.praise.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.praise.model.entity.Board;
 import com.example.praise.model.dto.UserDto;
 import com.example.praise.model.entity.User;
 import com.example.praise.model.form.PasswordForm;
@@ -34,11 +37,18 @@ public class UserController {
 	}
 	
 	@GetMapping("/mypage")
-	public String getUserById(HttpSession session, Model model) {
+	public String getUserByIdAndBoardList(@RequestParam(defaultValue = "0") Integer page, HttpSession session, Model model) {
 		try {
-			Optional<User> userInfo = userService.getUserById(Integer.parseInt(session.getId()));
-//			Optional<User> userInfo = userService.getUserById(1);
+			int userId = 1;
+			// 1. 사용자 정보 조회
+//			Optional<User> userInfo = userService.getUserById(Integer.parseInt(session.getId());
+			Optional<User> userInfo = userService.getUserById(userId);
 			model.addAttribute("userInfo", userInfo.get());
+			
+			// 2. 사용자가 작성한 글 목록 조회
+			Page<Board> boardPage = userService.getUserBoardList(userId, page, 10);
+		    model.addAttribute("boardPage", boardPage);
+			
 			return "user/mypage";
 		} catch (RuntimeException e) {
 			return "오류: " + e;
@@ -61,6 +71,5 @@ public class UserController {
 			model.addAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
 			return "user/mypage";
 		}
-		
 	}
 }
