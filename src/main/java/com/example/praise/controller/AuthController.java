@@ -1,17 +1,20 @@
 package com.example.praise.controller;
 
-import org.springframework.stereotype.Controller;
+//import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.praise.model.dto.UserDto;
+import com.example.praise.model.entity.User;
 import com.example.praise.service.UserService;
 
 
-@Controller
+@RestController
 @RequestMapping("/auth")
 public class AuthController {
 	
@@ -29,13 +32,12 @@ public class AuthController {
 	
 	// 회원가입 form에서 받은 정보를 함께 전달
 	@PostMapping("/signup")
-	public String doregister(@ModelAttribute UserDto dto, Model model) {
+	public User doregister(@RequestBody UserDto dto) {
 		try {
-			service.register(dto);
-			return "redirect:/";
+			return service.register(dto);
 		} catch (RuntimeException e) {
-			model.addAttribute("msg", dto.getUsername()+"는 사용할 수 없습니다.");
-			return "auth/signup";
+//			model.addAttribute("msg", dto.getUsername()+"는 사용할 수 없습니다.");
+			return null;
 		}
 	}
 	}
