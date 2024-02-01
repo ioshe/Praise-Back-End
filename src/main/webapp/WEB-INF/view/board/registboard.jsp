@@ -8,6 +8,7 @@
 	<title>칭찬 글 작성하기</title>
 </head>
 <body>
+	<%@include file="/WEB-INF/view/include/header.jsp"%>
     <h1>게시글 등록</h1>
     <form method="post" action="/board/regist">
         <label>작성자:</label>
