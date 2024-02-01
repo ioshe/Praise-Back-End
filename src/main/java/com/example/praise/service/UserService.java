@@ -35,4 +35,14 @@ public class UserService {
 		return urepo.findById(id);
 	}
 	
+	// 2) 회원탈퇴
+	public void signout(UserDto dto) {
+		User user = dto.toEntity();
+		// dto 통해서 받아온 삭제하고자 하는 id가 db에 있으면 삭제
+		if (urepo.findByUsername(user.getUsername()) != null) {
+			urepo.deleteByUsername(user.getUsername());
+		} else {
+			throw new RuntimeException("존재하지 않는 회원입니다.");
+		}
+	}
 }

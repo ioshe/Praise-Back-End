@@ -2,6 +2,7 @@ package com.example.praise.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,11 +22,12 @@ public class AuthController {
 		this.service = service;
 	}
 	
+	// 1) 회원가입
 	// 회원가입 빈 화면으로 전달 -> jsp
 	@GetMapping("/signup")
-		public String registerForm() {
-			return "user/signup"; 
-		}
+	public String registerForm() {
+		return "user/signup"; 
+	}
 	
 	// 회원가입 form에서 받은 정보를 함께 전달
 	@PostMapping("/signup")
@@ -38,5 +40,20 @@ public class AuthController {
 			return "user/signup";
 		}
 	}
+	
+	// 2) 회원탈퇴
+	@PostMapping("/signout")
+	public void signoutUser(@ModelAttribute UserDto dto, Model model) {
+		try{
+			service.signout(dto);
+			model.addAttribute("message", "회원탈퇴가 완료되었습니다.");
+		} catch (RuntimeException e) {
+			model.addAttribute("msg", "회원탈퇴에 실패했습니다.");
+//			return "user/mypage";
+		}
+		
 	}
+}
+
+
 
