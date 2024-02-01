@@ -56,7 +56,7 @@ public class UserService {
 			System.out.println("비밀번호 맞았어요 굿굿");
 			return user;
 		} else {
-			System.out.println("비밀번호가 틀렸습니다.!!!!!!");
+			System.out.println("비밀번호가 틀렸습니다!!!!!!");
 			throw new RuntimeException("비밀번호가 틀렸습니다.");
 		}
 	}

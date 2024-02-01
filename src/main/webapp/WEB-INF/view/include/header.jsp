@@ -24,15 +24,11 @@
 	  <c:if test="${!empty loginUser }">
 	  	${loginUser.nickname }님 환영합니다. <br>
 	    <!-- 로그아웃 넣을 예정 -->
-	    
+	    <a href= "/auth/logout" >로그아웃</a>
 	  	<a href="/board/regist">[게시글 등록]</a> 
 	  	<!-- My page 창 생성 -->
 	  	<a href= "/user/mypage" >[마이페이지]</a>
 	  </c:if>
 	  <a href="/board/list">[게시글 목록]</a>
 	</div>
-	
-	
-
-
 	<hr>

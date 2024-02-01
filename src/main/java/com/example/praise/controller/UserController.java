@@ -36,8 +36,8 @@ public class UserController {
 	@GetMapping("/mypage")
 	public String getUserById(HttpSession session, Model model) {
 		try {
-			Optional<User> userInfo = userService.getUserById(Integer.parseInt(session.getId()));
-//			Optional<User> userInfo = userService.getUserById(1);
+			UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+			Optional<User> userInfo = userService.getUserById((int) loginUser.getId());
 			model.addAttribute("userInfo", userInfo.get());
 			return "user/mypage";
 		} catch (RuntimeException e) {
@@ -49,8 +49,8 @@ public class UserController {
 	public String updatePassword(HttpSession session, PasswordForm pwForm, Model model) {	
 		try {
 			// 1. 현재 비밀번호 일치 여부 확인(Get)
-//			userService.getPasswordById(Integer.parseInt(session.getId()), pwForm.getCurPassword());
-			User user = userService.getPasswordById(1, pwForm.getCurPassword()).get();
+			UserDto loginUser = (UserDto) session.getAttribute("loginUser");
+			User user = userService.getPasswordById(loginUser.getId(), pwForm.getCurPassword()).get();
 			
 			// 2. 비밀번호 변경
 			user.setPassword(pwForm.getNewPassword());
