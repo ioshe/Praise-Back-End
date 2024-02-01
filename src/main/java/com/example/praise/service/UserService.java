@@ -1,7 +1,9 @@
 package com.example.praise.service;
 
 import java.util.Optional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -52,4 +54,14 @@ public class UserService {
 		return urepo.save(user);
 	}
 	
+	public Map<Integer, String> getAllRealNames() {
+        List<User> users = urepo.findAll();
+        Map<Integer, String> realnames = new HashMap<>();
+        
+        for (User user : users) {
+            realnames.put(user.getId(), user.getRealname());
+        }
+
+        return realnames;
+	}
 }
