@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.praise.model.entity.Board;
 import com.example.praise.model.entity.User;
 
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+	
 	private int id;	// autoIncreasement
 	private String userName; // loginID
 	private String passWord;
@@ -22,11 +24,12 @@ public class UserDto {
 	int userPoint;
 	private List<Board> boards;
 	
-	public User toDto() {
+	// Dto -> Entity
+	public User toEntity() {
 		User user = new User();
-		user.setId(this.getId());
-		user.setUserName(this.getUserName());
-		user.setPassWord(this.getPassWord());
+		user.setUserId(this.getId());
+		user.setUsername(this.getUserName());
+		user.setPassword(this.getPassWord());
 		user.setRealName(this.getRealName());
 		user.setClassName(this.getClassName());
 		user.setNickName(this.getNickName());

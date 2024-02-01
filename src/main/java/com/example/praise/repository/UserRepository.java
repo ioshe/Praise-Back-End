@@ -6,4 +6,6 @@ import com.example.praise.model.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 
+	Object findByUsername(int userId);
+
 }

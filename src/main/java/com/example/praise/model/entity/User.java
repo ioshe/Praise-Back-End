@@ -42,7 +42,7 @@ public class User {
     private List<Board> receivedBoards;
     
     
-	// DTO -> Entity
+	// Entity -> Dto
 	public UserDto toDto() {
 		UserDto dto = new UserDto();
 		dto.setId(this.getUserId());

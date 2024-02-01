@@ -22,8 +22,6 @@ public class BoardDto {
 		board.setNo(this.getNo());
 		board.setTitle(this.getTitle());
 		board.setContent(this.getContent());
-		board.setSendId(this.getSendId());
-		board.setReceiveId(this.getReceiveId());
 		return board;
 	}
 }
