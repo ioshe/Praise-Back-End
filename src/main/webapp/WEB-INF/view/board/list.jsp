@@ -10,7 +10,6 @@
 <body>
 	<%@include file="/WEB-INF/view/include/header.jsp"%>
 	<h1>글목록</h1>
-	${pageInfo }
 	<%-- Html, EL 태그는 주석 처리가 다름 --%>
 	<%--  	${pageInfo.content }  	--%>
 
