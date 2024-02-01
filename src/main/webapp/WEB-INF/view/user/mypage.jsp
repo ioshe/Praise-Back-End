@@ -31,6 +31,15 @@
 	        <div>
 	            <button type="submit">비밀번호 변경</button>
 	        </div>
+	        <div>
+	        	<form action="/auth/signout" method="post">
+	        	<input type="text" name="username" placeholder="아이디">
+	        	<br>
+	        	<input type="password" name="password" placeholder="비밀번호">
+	        	<br>
+	        	<input type="submit" value = "회원탈퇴">
+	        	</form>
+	        </div>
 	    </form>
 	    <% if (request.getAttribute("errorMessage") != null) { %>
 		    <p style="color:red;"><%= request.getAttribute("errorMessage") %></p>
