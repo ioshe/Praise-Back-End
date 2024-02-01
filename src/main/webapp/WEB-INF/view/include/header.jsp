@@ -28,6 +28,6 @@
 	<!-- My page 창 생성 -->
 	<c:if test="${!empty loginUser }">
 	</c:if>
-	<a href= "/user/Mypage" >마이페이지</a>
+	<a href= "/user/mypage" >마이페이지</a>
 
 	<hr>
