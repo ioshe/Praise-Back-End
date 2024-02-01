@@ -69,4 +69,8 @@ public class BoardService {
 		}
 	}
 	
+	public void deleteBoard(int boardId) {
+		brepo.deleteById(boardId);
+	}
+	
 }
