@@ -9,8 +9,8 @@
 <body>
 <!-- 인클루드로 가져올거야 -->
         <%@include file = "/WEB-INF/view/include/header.jsp" %>
-        Hello Web
+        칭찬 게시판에 오신 걸 환영합니다.
         
-        <img src="/img/shin.png">
+        <!-- 아래에 게시글 정렬 -->
 </body>
 </html>
