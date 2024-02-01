@@ -46,7 +46,6 @@ public class User {
 	public UserDto toDto() {
 		UserDto dto = new UserDto();
 		dto.setId(this.getId());
-		dto.setUsername(this.getUsername());
 		dto.setPassword(this.getPassword());
 		dto.setRealname(this.getRealname());
 		dto.setClassname(this.getClassname());
