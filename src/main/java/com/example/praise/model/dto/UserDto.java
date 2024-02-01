@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.praise.model.entity.Board;
 import com.example.praise.model.entity.User;
 
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+
 	private int id;
 	private String username;
 	private String password;
@@ -27,6 +29,7 @@ public class UserDto {
 	public User toEntity() {
 		User user = new User();
 		user.setId(this.getId());
+		user.setUsername(this.getUsername());
 		user.setPassword(this.getPassword());
 		user.setRealname(this.getRealname());
 		user.setClassname(this.getClassname());
