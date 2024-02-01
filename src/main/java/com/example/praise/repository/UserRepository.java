@@ -8,6 +8,6 @@ import com.example.praise.model.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	List<User> findByUsername(String username); // SELECT * FROM User WHERE username  = ?
+	User findByUsername(String username); // SELECT * FROM User WHERE username  = ?
 
 }

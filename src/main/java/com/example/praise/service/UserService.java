@@ -23,11 +23,11 @@ public class UserService {
 	@Transactional	// 무결성 유지
 	public User register(UserDto dto) {
 		User user = dto.toEntity();
-//		if (urepo.findByUsername(user.getUsername()) != null) {
-//			throw new RuntimeException("이미 존재하는 사용자 입니다.");
-//		} else {
+		if (urepo.findByUsername(user.getUsername()) != null) {
+			throw new RuntimeException("이미 존재하는 사용자 입니다.");
+		} else {
 			return urepo.save(user);
 		}
 	}
 	
-//}
+}

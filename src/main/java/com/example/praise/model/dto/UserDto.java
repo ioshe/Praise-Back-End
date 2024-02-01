@@ -29,6 +29,7 @@ public class UserDto {
 	public User toEntity() {
 		User user = new User();
 		user.setId(this.getId());
+		user.setUsername(this.getUsername());
 		user.setPassword(this.getPassword());
 		user.setRealname(this.getRealname());
 		user.setClassname(this.getClassname());
