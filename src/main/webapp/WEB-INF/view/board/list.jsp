@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +15,23 @@
 	<%--  	${pageInfo.content }  	--%>
 
 
-	<!-- c:forEach -->
-
 	<table>
-		<tr><td>no</td><td>title</td><td>writer</td></tr>
+		<tr><td>no</td><td>제목</td><td>글쓴이</td><td>등록일</td><td>좋아요수</td><td>조회수</td></tr>
 		<c:forEach items="${pageInfo.content }" var="board">
 			<tr>
-				<td><a href="/board/detail?no=${board.no }">${board.no }</a></td>
+				<td><a href="/board/detail?boardId=${board.boardId}">${board.boardId }</a></td>
 				<td>${board.title}</td>
-				<td>${board.user.name }</td>
+				<c:choose>
+				    <c:when test="${board.anonymous == false}">
+				        <td>${board.receiver.realname }</td>
+				    </c:when>
+				    <c:otherwise>
+				        <td>익명</td>
+				    </c:otherwise>
+				</c:choose>
+				<td><fmt:formatDate value="${board.registDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+				<td>${board.likes}</td>
+				<td>${board.views}</td>
 			</tr>
 		</c:forEach>
 
