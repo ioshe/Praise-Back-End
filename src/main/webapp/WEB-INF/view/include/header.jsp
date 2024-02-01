@@ -13,7 +13,7 @@
 	      <input type = "password" name = "pass">
 	      <input type = "submit">
 	    </form>
-	    <a href="/auth/register"><button>회원가입</button></a>
+	    <a href="/auth/signup"><button>회원가입</button></a>
 	
 	  </c:if>
 	<!-- 로그아웃 창 생성 -->
