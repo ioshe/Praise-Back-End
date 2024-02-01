@@ -1,7 +1,9 @@
 package com.example.praise.service;
 
 import java.util.Optional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,17 @@ public class UserService {
 	// urepo에 데이터 넣기 위한 생성자 - 전달받은 데이터를 데리고 갈 준비
 	public UserService(UserRepository urepo) {
 		this.urepo = urepo;
+	}
+	
+	public Map<Integer, String> getAllRealNames() {
+        List<User> users = urepo.findAll();
+        Map<Integer, String> realnames = new HashMap<>();
+        
+        for (User user : users) {
+            realnames.put(user.getId(), user.getRealname());
+        }
+
+        return realnames;
 	}
 	
 	// 1. auth
@@ -35,6 +48,7 @@ public class UserService {
 		return urepo.findById(id);
 	}
 	
+
 	// 2) 회원탈퇴
 	public void signout(UserDto dto) {
 		User user = dto.toEntity();
@@ -58,4 +72,6 @@ public class UserService {
 		}
 		throw new RuntimeException("로그인에 실패하였습니다.");
 	}
+
 }
+

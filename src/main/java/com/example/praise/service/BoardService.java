@@ -1,5 +1,7 @@
 package com.example.praise.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,13 @@ public class BoardService {
 		Board board = dto.toEntity();
 		board.setViews(0);
 		board.setLikes(0);
-		board.setSender(sender);
+		
+		Date currentDate = new Date();
+		Timestamp timestamp = new Timestamp(currentDate.getTime());
+		
+	    board.setRegistDate(timestamp);
+	    
+	    board.setSender(sender);
 		board.setReceiver(receiver);
 		
 		brepo.saveAndFlush(board);
