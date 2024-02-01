@@ -35,10 +35,9 @@
         <div class="left-panel">
             <div>
                 <h2>사용자 정보</h2>
-                <p><strong>로그인 ID:</strong> ${userInfo.username}</p>
-                <p><strong>실제 이름:</strong> ${userInfo.realname}</p>
-                <p><strong>과정명:</strong> ${userInfo.classname}</p>
+                <p><strong>이름:</strong> ${userInfo.realname}</p>
                 <p><strong>닉네임:</strong> ${userInfo.nickname}</p>
+                <p><strong>과정명:</strong> ${userInfo.classname}</p>
                 <p><strong>포인트:</strong> ${userInfo.userPoint}</p>
             </div>
             <div>
