@@ -72,8 +72,13 @@
 		       	<input type="password" name="password" placeholder="비밀번호">
 		       	<br>
 		       	<input type="submit" value = "회원탈퇴">
-		       	
 		       	</form>
+                <% if (request.getAttribute("signoutmsg1") != null) { %>
+                    <p style="color:blue;"><%= request.getAttribute("signoutmsg1") %></p>
+                <% } %>
+                <% if (request.getAttribute("signoutmsg2") != null) { %>
+                    <p style="color:red;"><%= request.getAttribute("signoutmsg2") %></p>
+                <% } %>	       	
 		    </div>
         </div>
 

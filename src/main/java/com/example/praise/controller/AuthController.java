@@ -38,7 +38,11 @@ public class AuthController {
 			service.register(dto);
 			return "redirect:/";
 		} catch (RuntimeException e) {
-			model.addAttribute("msg", dto.getUsername()+"는 이미 존재하는 ID입니다."); // -> jsp
+			if(e.getMessage().equals("이미 존재하는 ID 입니다.")) {
+				model.addAttribute("errormsg1", dto.getUsername()+"는/은"+e.getMessage()); // -> jsp
+			} else if (e.getMessage().equals("이미 존재하는 닉네임입니다.")) {
+			model.addAttribute("errormsg2", dto.getNickname()+"는/은"+e.getMessage()); // -> jsp
+			}
 			return "user/signup";
 		}
 	}
@@ -49,12 +53,12 @@ public class AuthController {
 	public String signoutUser(HttpSession session, Model model) {
 		try{
 			service.signout(session);
+			model.addAttribute("signoutmsg1", "회원탈퇴가 완료되었습니다.");
 			session.invalidate();
-			model.addAttribute("signoutmsg", "회원탈퇴가 완료되었습니다.");
 		} catch (RuntimeException e) {
-			model.addAttribute("signoutmsg", "회원탈퇴에 실패했습니다.");
+			model.addAttribute("signoutmsg2", "회원탈퇴에 실패했습니다.");
 		}
-		return "redirect:/";
+		return "user/mypage";
 	}
 //	@PostMapping("/signout")
 //	public String signoutUser(@ModelAttribute UserDto dto, Model model) {
