@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #0067ac;
+    text-align: center;
+}
+
+.signup-form {
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="password"],
+.signup-form input[type="submit"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+p {
+    color: red;
+}
+
+/* 나머지 스타일은 여기에 추가하세요 */

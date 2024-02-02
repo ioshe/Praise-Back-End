@@ -5,17 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	 .button-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: center; /* 버튼들이 중앙에 위치하도록 조정 */
-    }
-    .right-buttons {
-            text-align: right; /* 오른쪽 정렬 */
-            width: 100%; /* 전체 너비 사용 */
-        }
-</style>
+<link rel="stylesheet" type="text/css" href="/css/detail.css" />
 </head>
 <body>
 		<%@include file="/WEB-INF/view/include/header.jsp"%>

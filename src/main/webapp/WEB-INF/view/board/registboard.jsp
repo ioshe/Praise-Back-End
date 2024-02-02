@@ -11,6 +11,7 @@
 	        alert('게시글을 작성하여 포인트 50점이 적립되었습니다!');
 	    }
 	</script>
+	<link rel="stylesheet" type="text/css" href="/css/registboard.css" />
 </head>
 <body>
 	<%@include file="/WEB-INF/view/include/header.jsp"%>
@@ -18,7 +19,7 @@
     <form method="post" action="/board/regist" onsubmit="showConfirmation()">
         <label>작성자:<input type="text" value="${loginUser.realname}" readonly= "readonly" name = "user_Id"></label><br>
         <input type="hidden" id="senderId" name="senderId" value="${loginUser.id}" readonly= "readonly" >
-        <label>이름2:</label>
+        <label>칭찬받는 사람:</label>
         <select id="receiverId" name="receiverId" required>
             <c:forEach var="entry" items="${realnames}">
                 <option value="${entry.key}">${entry.value}</option>

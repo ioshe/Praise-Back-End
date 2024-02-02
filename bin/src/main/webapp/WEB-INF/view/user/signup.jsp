@@ -16,17 +16,22 @@
                         ${msg }
                 </c:if>
                 <br>
-                <input type="text" name="realname" placeholder="사용자 이름">
-                <br>
                 <input type="text" name="nickname" placeholder="닉네임">
+                <br>
+                <input type="text" name="realname" placeholder="사용자 이름">
                 <br>
                 <input type="text" name="classname" placeholder="우리FISA 반(클래스)">
                 <br>                
-                <input type="password" name="password" placeholder="사용자 비번">
+                <input type="password" name="password" placeholder="사용자 비밀번호">
                 <br>
                 <input type="submit" value="회원 가입">
                 <!-- 이 값들이 서버로 날아오면 url이 유저의 조인이고 포스트인곳으로 날아간다 -->
         </form>
+        <% if (request.getAttribute("errormsg1") != null) { %>
+        	<p style="color:red;"><%= request.getAttribute("errormsg1") %></p>
+        <% } %>
+        <% if (request.getAttribute("errormsg2") != null) { %>
+        	<p style="color:red;"><%= request.getAttribute("errormsg2") %></p>
+        <% } %>        
 </body>
 </html>
-<!--  다음부턴 사용자의 정보를 받아서 회원가입 처리를 해줘야함 jon.jsp로 ㄱㄱ -->

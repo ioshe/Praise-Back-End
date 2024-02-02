@@ -3,14 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/css/signup.css" />
+
 </head>
 <body>
         <%@include file="/WEB-INF/view/include/header.jsp"%>
         <h1>회원 가입</h1>
         <!-- 사용자로 부터 정보를 받아야함 form 필요 -->
-        <form action="/auth/signup" method="post">
+        <form class="signup-form" action="/auth/signup" method="post">
                 <input type="text" name="username" placeholder="사용자 ID">
                 <c:if test="${!empty msg }">
                         ${msg }

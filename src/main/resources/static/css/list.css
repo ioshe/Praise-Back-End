@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #0067ac;
+    text-align: center;
+}
+
+table {
+    width: 60%;
+    margin: 20px auto; /* 테이블 가운데 정렬 */
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center; /* 가운데 정렬 */
+    white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+    overflow: hidden; /* 넘치는 텍스트 감추기 */
+    text-overflow: ellipsis; /* 넘치는 텍스트에 ... 추가 */
+}
+
+th:nth-child(1) {
+    width: 10%; /* 첫 번째 열의 너비를 고정값으로 설정하세요 */
+}
+
+th:nth-child(2) {
+    width: 40%; /* 두 번째 열의 너비를 고정값으로 설정하세요 */
+}
+
+/* 이하 나머지 열도 필요에 따라 고정값 설정 */
+
+th {
+    background-color: #0067ac;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+a {
+    color: #0067ac;
+    text-decoration: none;
+}
+
+.list-form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.list-form input[type="text"] {
+    width: 50px; /* 입력란의 너비를 조정하세요 */
+}
+
+.list-form input[type="submit"] {
+    background-color: #20c4f4; /* 이동 버튼의 배경 색상을 R32 G196 B244로 설정 */
+    color: #fff; /* 이동 버튼의 텍스트 색상을 흰색으로 설정 */
+    padding: 8px 15px; /* 이동 버튼의 내부 여백 조정 */
+    border: none; /* 테두리 제거 */
+    cursor: pointer;
+}

@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #0067ac;
+    text-align: center;
+}
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form input[type="text"],
+form textarea {
+    width: 40%; /* 입력 필드의 너비를 조절하세요 */
+    margin-bottom: 10px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.left-buttons,
+.right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.left-buttons {
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    width: 50%; /* 왼쪽 하단에 위치하도록 너비 조절 */
+}
+
+.right-buttons {
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    width: 50%; /* 오른쪽 하단에 위치하도록 너비 조절 */
+}
+
+.left-buttons button,
+.right-buttons input[type="button"] {
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* 좋아요 버튼 스타일 */
+#likeButton {
+    background-color: #20c4f4;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#likeLabel {
+    margin-right: 5px;
+}
+
+/* 나머지 스타일은 여기에 추가하세요 */

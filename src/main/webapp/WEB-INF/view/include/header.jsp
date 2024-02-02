@@ -2,7 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	    pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+</head>
+<body>
 	<h1>우리 FISA 칭찬 게시판 </h1> 
+	<h2>서로 서로를 칭찬하고 환영합시다</h2>
 	<div>
 	<!-- 홈 버튼 -->
 	<a href="/board/list"><button> 🏠 </button></a>
@@ -33,3 +39,5 @@
 	  <a href="/board/list">[게시글 목록]</a>
 	</div>
 	<hr>
+</body>
+</html>

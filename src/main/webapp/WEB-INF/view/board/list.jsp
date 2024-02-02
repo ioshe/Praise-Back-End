@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>글목록</title>
+    <link rel="stylesheet" type="text/css" href="/css/list.css"/>
 </head>
 <body>
 	<%@include file="/WEB-INF/view/include/header.jsp"%>
@@ -15,11 +16,18 @@
 
 
 	<table>
-		<tr><td>no</td><td>제목</td><td>글쓴이</td><td>등록일</td><td>좋아요수</td><td>조회수</td></tr>
+        <tr>
+            <th>순번</th>
+            <th>제목</th>
+            <th>글쓴이</th>
+            <th>등록일</th>
+            <th>좋아요수</th>
+            <th>조회수</th>
+        </tr>
 		<c:forEach items="${pageInfo.content }" var="board">
 			<tr>
 				<td><a href="/board/detail?boardId=${board.boardId}">${board.boardId }</a></td>
-				<td>${board.title}</td>
+				<td><a href="/board/detail?boardId=${board.boardId}">${board.title}</a></td>
 				<c:choose>
 				    <c:when test="${board.anonymous == false}">
 				        <td>${board.sender.realname }</td>
@@ -35,10 +43,10 @@
 		</c:forEach>
 
 	</table>
-	<form action="/board/list" method="get">
-		<input type="text" name="page" value="${pageInfo.number +1 }">/${pageInfo.totalPages }
-		<input type="submit" value="이동">
-	</form>
+    <form class="list-form" action="/board/list" method="get">
+        <input type="text" name="page" value="${pageInfo.number +1 }">/${pageInfo.totalPages }
+        <input type="submit" value="이동">
+    </form>
 	
 </body>
 </html>
