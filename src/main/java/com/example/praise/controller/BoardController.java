@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -76,10 +77,36 @@ public class BoardController {
 	}
 	
 	// 좋아요 기능 
-	@GetMapping("/like")
-	public ResponseEntity<String> toggleLike(@RequestParam int boardId,HttpSession session) {
+	@PostMapping("/like")
+	public ResponseEntity<String> toggleLike(@RequestBody Map<String, Object> requestBody, HttpSession session) {
+	    // 요청 바디에서 필요한 값들을 추출합니다.
+//		int boardId = Integer.parseInt((String) requestBody.get("boardId"));
+//	    int senderId = Integer.parseInt((String) requestBody.get("senderId"));
+//		int currentUserId = Integer.parseInt((String) requestBody.get("currentUserId"));
+//		int boardId = (Integer) requestBody.get("boardId");
+//	    int senderId = (Integer) requestBody.get("senderId");
+//		int currentUserId = (Integer) requestBody.get("currentUserId");
+		Object boardIdObj = requestBody.get("boardId");
+		int boardId = boardIdObj instanceof Integer ? (Integer) boardIdObj : Integer.parseInt(boardIdObj.toString());
+
+		Object senderIdObj = requestBody.get("senderId");
+		int senderId = senderIdObj instanceof Integer ? (Integer) senderIdObj : Integer.parseInt(senderIdObj.toString());
+
+		Object currentUserIdObj = requestBody.get("currentUserId");
+		int currentUserId = currentUserIdObj instanceof Integer ? (Integer) currentUserIdObj : Integer.parseInt(currentUserIdObj.toString());
+
+		
 	    // 좋아요 상태를 토글하고, 현재 좋아요 수를 반환하는 로직
-		int currentLikeCount = bService.toggleLike(boardId,session);
+	    int currentLikeCount = bService.toggleLike(boardId, session, senderId, currentUserId);
+
+	    // 현재 좋아요 수를 JSON 형식으로 응답합니다.
 	    return ResponseEntity.ok("{\"likeCount\":" + currentLikeCount + "}");
 	}
+
+	//@GetMapping("/like")
+//	public ResponseEntity<String> toggleLike(@RequestParam int boardId,HttpSession session) {
+//	    // 좋아요 상태를 토글하고, 현재 좋아요 수를 반환하는 로직
+//		int currentLikeCount = bService.toggleLike(boardId,session);
+//	    return ResponseEntity.ok("{\"likeCount\":" + currentLikeCount + "}");
+//	}
 }

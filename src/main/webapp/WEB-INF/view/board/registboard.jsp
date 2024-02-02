@@ -6,19 +6,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>칭찬 글 작성하기</title>
+	<script>
+    function showConfirmation() {
+	        alert('게시글을 작성하여 포인트 50점이 적립되었습니다!');
+	    }
+	</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/view/include/header.jsp"%>
     <h1>게시글 등록</h1>
-    <form method="post" action="/board/regist">
-        <label>작성자:</label>
-        <select id="senderId" name="senderId" required>
-            <c:forEach var="entry" items="${realnames}">
-                <option value="${entry.key}">${entry.value}</option>
-            </c:forEach>
-        </select>
-        <br>
-        
+    <form method="post" action="/board/regist" onsubmit="showConfirmation()">
+        <label>작성자:<input type="text" value="${loginUser.realname}" readonly= "readonly" name = "user_Id"></label><br>
+        <input type="hidden" id="senderId" name="senderId" value="${loginUser.id}" readonly= "readonly" >
         <label>이름2:</label>
         <select id="receiverId" name="receiverId" required>
             <c:forEach var="entry" items="${realnames}">
