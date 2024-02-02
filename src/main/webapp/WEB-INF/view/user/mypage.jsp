@@ -67,10 +67,6 @@
            			${signoutmsg }
            		</c:if>
 		       	<form action="/auth/signout" method="post">
-		       	<input type="text" name="username" placeholder="아이디">
-		       	<br>
-		       	<input type="password" name="password" placeholder="비밀번호">
-		       	<br>
 		       	<input type="submit" value = "회원탈퇴">
 		       	</form>
                 <% if (request.getAttribute("signoutmsg1") != null) { %>

@@ -60,17 +60,7 @@ public class AuthController {
 		}
 		return "user/mypage";
 	}
-//	@PostMapping("/signout")
-//	public String signoutUser(@ModelAttribute UserDto dto, Model model) {
-//		try{
-//			service.signout(dto);
-//			model.addAttribute("signoutmsg", "회원탈퇴가 완료되었습니다.");
-//		} catch (RuntimeException e) {
-//			model.addAttribute("signoutmsg", "회원탈퇴에 실패했습니다.");
-//		}
-//		return "redirect:/";
-//	}
-//	
+
 	// 3) 로그인
 	@PostMapping("/login")
 	public String login(@ModelAttribute UserDto dto, Model model, HttpSession session) {
@@ -80,7 +70,7 @@ public class AuthController {
 			return "redirect:/";
 		} catch (RuntimeException e) {
 			model.addAttribute("loginmsg", e.getMessage());
-			return "index";
+			return "redirect:/";
 		}
 		
 	}

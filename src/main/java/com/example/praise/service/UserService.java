@@ -69,23 +69,6 @@ public class UserService {
 		urepo.deleteById(loginUser.getId());
 	}
 	
-//	public void signout(UserDto dto) {
-//		User user = dto.toEntity();
-//		// dto 통해서 받아온 삭제하고자 하는 id가 db에 있으면 삭제
-//		if (urepo.findByUsername(user.getUsername()).isPresent()) {	
-////			urepo.deleteByUsername(user.getUsername());
-//			try {
-//				UserDto loginUser = (UserDto) session.getAttribute("loginUser");
-//			    urepo.deleteByUsername(user.getUsername());
-//			} catch (Exception e) {
-//			    e.printStackTrace();
-//			    throw new RuntimeException("회원 탈퇴 중 오류 발생: " + e.getMessage());
-//			}
-//		} else {
-//			throw new RuntimeException("존재하지 않는 회원입니다.");
-//		}
-//	}
-	
 	// 3) 로그인
 	public UserDto login(UserDto dto) {
 		Optional<User> result = urepo.findByUsername(dto.getUsername());
