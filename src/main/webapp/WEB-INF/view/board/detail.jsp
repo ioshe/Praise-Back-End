@@ -16,17 +16,6 @@
             width: 100%; /* 전체 너비 사용 */
         }
 </style>
-<script>
-	function toggleLike(boardId) {
-	    console.log("Board ID: ", boardId); // 여기에서 boardId 값을 확인
-	    fetch("/board/like?boardId=${boardId}")
-	        .then(response => response.json())
-	        .then(data => {
-	            document.getElementById('likeCount').textContent = data.likeCount;
-	        })
-	        .catch(error => console.error('Error:', error));
-	}
-</script>
 </head>
 <body>
 		<%@include file="/WEB-INF/view/include/header.jsp"%>
@@ -48,7 +37,7 @@
 		            <button id="likeButton" value="${board.boardId}" onclick="/board/like?boardId=${board.boardId}">좋아요</button>
 		        </c:if>
 		        <label id="likeLabel">좋아요 수</label>
-	            <label id="likeCount">0</label>
+	            <label id="likeCount">${board.likes}</label>
 		    </div>
 		    <div class="right-buttons">
 		        <!-- 삭제 버튼: 게시글 작성자만 표시 -->
@@ -58,6 +47,17 @@
 		        <input type="button" value="목록" onclick="location.href='/board/list'">
 		    </div>
 		</div>
-
+		<script>
+			function toggleLike(boardId) {
+				boardId = Number(boardId);
+			    console.log("Board ID: ", boardId); // 여기에서 boardId 값을 확인
+			    fetch(`/board/like?boardId=`+boardId)
+			        .then(response => response.json())
+			        .then(data => {
+			            document.getElementById('likeCount').textContent = data.likeCount;
+			        })
+			        .catch(error => console.error('Error:', error));
+			}
+		</script>
 </body>
 </html>
