@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.praise.model.dto.UserDto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,11 +26,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;	// autoIncreasement
-	
+	@Column(unique=true)
 	private String username; // loginID
 	private String password;
 	private String realname;
 	private String classname;
+	@Column(unique=true)
 	private String nickname;
 	int userPoint;
 	 

@@ -2,22 +2,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	    pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
-	<h1>My Board </h1> 
-	<!--  login & logout 처리 -->
+	<h1>우리 FISA 칭찬 게시판 </h1> 
 	<div>
+	<!-- 홈 버튼 -->
+	<a href="/board/list"><button> 🏠 </button></a>
+	<br>
 	<!-- 로그인 창 생성 -->
 	  <c:if test = "${empty loginUser }">
-	    <c:if test="${empty loginmsg }"></c:if>
-	      ${loginmsg }
+	  	<c:if test="${!empty loginmsg }"></c:if>
+	  		${loginmsg }
 	    <form method = "post" action="/auth/login">
 	      <input type = "text" name = "username"> 
 	      <input type = "password" name = "password">
 	      <input type = "submit" value="로그인">
 	    </form>
-	  
-	 <!-- 회원가입 버튼 -->
+	    
+	 	<!-- 회원가입 버튼 -->
 	    <a href="/auth/signup"><button>회원가입</button></a>
-	
 	  </c:if>
 	  
 	<!-- 로그아웃 창 생성 -->

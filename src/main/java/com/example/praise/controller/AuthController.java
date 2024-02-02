@@ -38,25 +38,29 @@ public class AuthController {
 			service.register(dto);
 			return "redirect:/";
 		} catch (RuntimeException e) {
-			model.addAttribute("msg", dto.getUsername()+"는 이미 존재하는 ID입니다."); // -> jsp
+			if(e.getMessage().equals("이미 존재하는 ID 입니다.")) {
+				model.addAttribute("errormsg1", dto.getUsername()+"는/은"+e.getMessage()); // -> jsp
+			} else if (e.getMessage().equals("이미 존재하는 닉네임입니다.")) {
+			model.addAttribute("errormsg2", dto.getNickname()+"는/은"+e.getMessage()); // -> jsp
+			}
 			return "user/signup";
 		}
 	}
 	
 	// 2) 회원탈퇴
+	// 탈퇴진행
 	@PostMapping("/signout")
-	public String signoutUser(@ModelAttribute UserDto dto, Model model) {
+	public String signoutUser(HttpSession session, Model model) {
 		try{
-			service.signout(dto);
-			model.addAttribute("message", "회원탈퇴가 완료되었습니다.");
-			return "redirect:/";
+			service.signout(session);
+			model.addAttribute("signoutmsg1", "회원탈퇴가 완료되었습니다.");
+			session.invalidate();
 		} catch (RuntimeException e) {
-			model.addAttribute("msg", "회원탈퇴에 실패했습니다.");
-			return "user/mypage";
+			model.addAttribute("signoutmsg2", "회원탈퇴에 실패했습니다.");
 		}
-		
+		return "user/mypage";
 	}
-	
+
 	// 3) 로그인
 	@PostMapping("/login")
 	public String login(@ModelAttribute UserDto dto, Model model, HttpSession session) {
@@ -65,8 +69,9 @@ public class AuthController {
 			session.setAttribute("loginUser", result);
 			return "redirect:/";
 		} catch (RuntimeException e) {
+			session.setAttribute("loginmsg", e.getMessage());
 			model.addAttribute("loginmsg", e.getMessage());
-			return "index";
+			return "redirect:/";
 		}
 		
 	}

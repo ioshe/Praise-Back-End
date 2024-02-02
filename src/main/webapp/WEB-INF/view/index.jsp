@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
@@ -12,6 +13,7 @@
     </script>
 </head>
 <body>
-    <p>If you are not redirected, <a href="/board/list">click here</a>.</p>
+	<jsp:include page="/WEB-INF/view/include/header.jsp" />
+	<p>If you are not redirected, <a href="/board/list">click here</a>.</p>
 </body>
 </html>
