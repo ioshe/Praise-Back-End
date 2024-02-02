@@ -9,14 +9,14 @@
 	<br>
 	<!-- 로그인 창 생성 -->
 	  <c:if test = "${empty loginUser }">
-	    <c:if test="${empty loginmsg }"></c:if>
-	      ${loginmsg }
+	  	<c:if test="${!empty loginmsg }"></c:if>
+	  		${loginmsg }
 	    <form method = "post" action="/auth/login">
 	      <input type = "text" name = "username"> 
 	      <input type = "password" name = "password">
 	      <input type = "submit" value="로그인">
 	    </form>
-	  
+	    
 	 	<!-- 회원가입 버튼 -->
 	    <a href="/auth/signup"><button>회원가입</button></a>
 	  </c:if>

@@ -69,6 +69,7 @@ public class AuthController {
 			session.setAttribute("loginUser", result);
 			return "redirect:/";
 		} catch (RuntimeException e) {
+			session.setAttribute("loginmsg", e.getMessage());
 			model.addAttribute("loginmsg", e.getMessage());
 			return "redirect:/";
 		}
