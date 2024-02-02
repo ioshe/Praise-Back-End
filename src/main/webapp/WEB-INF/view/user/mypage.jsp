@@ -88,7 +88,7 @@
                     <th>조회수</th>
                 </tr>
                 <c:forEach var="board" items="${boardPage.content}">
-                    <tr onclick="location.href='/boards/${board.boardId}'" style="cursor:pointer;">
+                    <tr onclick="location.href='/board/detail?boardId=${board.boardId}'" style="cursor:pointer;">
                         <td>${board.title}</td>
                         <td>${board.sender.username}</td>
                         <td>${board.receiver.username}</td>

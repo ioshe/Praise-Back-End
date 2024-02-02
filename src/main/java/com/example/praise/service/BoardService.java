@@ -18,6 +18,8 @@ import com.example.praise.model.entity.User;
 import com.example.praise.repository.BoardRepository;
 import com.example.praise.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class BoardService {
 	private BoardRepository brepo;
@@ -78,5 +80,22 @@ public class BoardService {
 		int currentViews = board.getViews() + 1;
 		board.setViews(currentViews);
 		brepo.saveAndFlush(board);
+	}
+	
+	public int toggleLike(int boardId,HttpSession session) {
+		Board board = brepo.getReferenceById(boardId);
+		int currentLikes = board.getLikes();
+		Integer like = (Integer) session.getAttribute(String.valueOf(boardId)+"Like");
+		if ((like == null) || (like == 0)){
+			session.setAttribute(String.valueOf(boardId)+"Like", 1);
+			currentLikes += 1;
+		}
+		else {
+			session.setAttribute(String.valueOf(boardId)+"Like",0);
+			currentLikes -=1;
+		}
+		board.setLikes(currentLikes);
+		brepo.saveAndFlush(board);
+		return currentLikes;
 	}
 }
