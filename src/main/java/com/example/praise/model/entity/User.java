@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.praise.model.dto.UserDto;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,10 +37,10 @@ public class User {
 	int userPoint;
 	 
     // 이 사용자가 보낸 모든 칭찬 게시물
-    @OneToMany(mappedBy = "sender")
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
     private List<Board> sentBoards;
     // 이 사용자가 받은 모든 칭찬 게시물
-    @OneToMany(mappedBy = "receiver")
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
     private List<Board> receivedBoards;
     
     

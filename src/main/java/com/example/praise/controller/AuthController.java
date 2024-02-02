@@ -56,7 +56,8 @@ public class AuthController {
 			model.addAttribute("signoutmsg1", "회원탈퇴가 완료되었습니다.");
 			session.invalidate();
 		} catch (RuntimeException e) {
-			model.addAttribute("signoutmsg2", "회원탈퇴에 실패했습니다.");
+			model.addAttribute("signoutmsg2", e.getMessage());
+			// "회원탈퇴에 실패했습니다."
 		}
 		return "user/mypage";
 	}
