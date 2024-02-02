@@ -22,7 +22,7 @@
 				<td>${board.title}</td>
 				<c:choose>
 				    <c:when test="${board.anonymous == false}">
-				        <td>${board.receiver.realname }</td>
+				        <td>${board.sender.realname }</td>
 				    </c:when>
 				    <c:otherwise>
 				        <td>익명</td>
