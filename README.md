@@ -3,6 +3,7 @@
 
 ## 2. 프로젝트 설계
 ### 1. ERD
+![image](https://github.com/Praise-Board-Project/Praise-Back-End/assets/113660954/3e2d863b-aa47-4812-92a8-890b7470b336)
 
 
 ### 2. UML 클래스 다이어그램
