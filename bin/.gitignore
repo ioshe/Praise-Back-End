@@ -33,3 +33,9 @@ build/
 .vscode/
 
 application.properties
+
+### Docker ignore ###
+.env
+.dockerignore
+Dockerfile
+logs/demo.log

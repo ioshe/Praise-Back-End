@@ -25,7 +25,9 @@ import com.example.praise.model.form.PasswordForm;
 import com.example.praise.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -64,6 +66,7 @@ public class UserController {
 			// 2. 비밀번호 변경
 			user.setPassword(pwForm.getNewPassword());
 			userService.saveUser(user);
+			log.info("info -- id: {} update password", user.getId());
 			
 			attribredirectAttributes.addFlashAttribute("successMessage", "비밀번호를 변경했습니다.");
 		} catch(RuntimeException e) {

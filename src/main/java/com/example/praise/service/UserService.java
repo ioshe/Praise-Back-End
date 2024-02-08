@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.example.praise.controller.AuthController;
 import com.example.praise.model.dto.UserDto;
 import com.example.praise.model.entity.Board;
 import com.example.praise.model.entity.User;
@@ -21,7 +22,9 @@ import com.example.praise.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class UserService {
 	private UserRepository urepo;
@@ -61,6 +64,7 @@ public class UserService {
 			throw new RuntimeException("이미 존재하는 닉네임입니다.");
 		}else {
 			return urepo.saveAndFlush(user);
+			
 		}
 	}
 

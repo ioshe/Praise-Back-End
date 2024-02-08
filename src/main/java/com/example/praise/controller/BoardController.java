@@ -19,7 +19,9 @@ import com.example.praise.service.BoardService;
 import com.example.praise.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -43,6 +45,7 @@ public class BoardController {
 	@PostMapping("/regist")
 	public String registBoard(@ModelAttribute BoardDto board) {
 		bService.writeBoard(board);
+		log.info("info -- id: {} create new content", board.getSenderId());
 		return "redirect:/board/list";
 	}
 	

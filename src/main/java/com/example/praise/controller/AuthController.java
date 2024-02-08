@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+//import com.example.demo.controller.UserController;
 import com.example.praise.model.dto.UserDto;
 import com.example.praise.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -36,6 +38,7 @@ public class AuthController {
 	public String doregister(@ModelAttribute UserDto dto, Model model) {
 		try {
 			service.register(dto);
+			log.info("info -- login id: {} signup", dto.getUsername());
 			return "redirect:/";
 		} catch (RuntimeException e) {
 			if(e.getMessage().equals("이미 존재하는 ID 입니다.")) {
@@ -52,6 +55,7 @@ public class AuthController {
 	@PostMapping("/signout")
 	public String signoutUser(HttpSession session, Model model) {
 		try{
+			log.info("info -- id: {} signout", ((UserDto) session.getAttribute("loginUser")).getId());
 			service.signout(session);
 			model.addAttribute("signoutmsg1", "회원탈퇴가 완료되었습니다.");
 			session.invalidate();
@@ -67,6 +71,7 @@ public class AuthController {
 	public String login(@ModelAttribute UserDto dto, Model model, HttpSession session) {
 		try {
 			UserDto result = service.login(dto);
+			log.info("info -- id: {} login", result.getId());
 			session.setAttribute("loginUser", result);
 			return "redirect:/";
 		} catch (RuntimeException e) {
