@@ -27,7 +27,7 @@
 - 전체 트러블 슈팅
   |**문제**|**해결**|
   |:---|:---|
-  |Board Table의 recieve_id와 send_id 가 모두 User Table의 id를 조회해야 해서 두 테이블 사이의 관계를 정의할 때 M:N과 1:M 사이에서 고민함|1:M 관계로 User Table의 id와 Board Table의 각 id를 따로 연결해줌|
+  |Board Table의 recieve_id와 send_id 가 모두 User Table의 id를 조회해야 해서 두 테이블 사이의 관계를 정의할 때 M:N과 1:M 사이에서 고민함|1:M 관계로 User Table의 id와 Board Table의 receive_id, send_id를 각각 연결함|
   | |
 - 회원관리 트러블 슈팅
   |**문제**|**해결**|
