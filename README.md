@@ -1,3 +1,10 @@
+![Spring Boot](https://img.shields.io/badge/spring%20boot-6DB33F.svg?&style=for-the-badge&logo=spring-boot&logoColor=white)
+![AWS](https://img.shields.io/badge/aws-232F3E.svg?&style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Jenkins](https://img.shields.io/badge/jenkins-D24939.svg?&style=for-the-badge&logo=jenkins&logoColor=white)
+![RDS](https://img.shields.io/badge/RDS-527FFF.svg?&style=for-the-badge&logo=amazon&logoColor=white)
+![Java](https://img.shields.io/badge/java-007396.svg?&style=for-the-badge&logo=java&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-1572B6.svg?&style=for-the-badge&logo=css3&logoColor=white)
+
 ## 1. 기능
 이 프로젝트는 Spring 기반의 칭찬 게시판 시스템으로, 사용자 관리, 포인트 부여 및 좋아요 기능을 통해 서로 칭찬하고 긍정적으로 소통할 수 있도록 도와줍니다.
 
